@@ -1,0 +1,33 @@
+{% extends "base.html" %}
+{% block container %}
+    <h2>{{ post.title }}</h2>
+    <div>
+        {{ post.created | date:"Y-m-d H:i:s" }}
+        <a href="/post/edit/?post_id={{ post.id }}">修改</a>
+        {% if request.session.uid == post.uid %}
+        {% endif %}
+    </div>
+
+    <hr>
+
+    <p>
+        {{ post.content | safe | escape | linebreaks }}
+    </p>
+    {% if post.tags %}
+        <div>
+            <strong>Tags:</strong>
+            {% for tag in post.tags %}
+                <a href="/post/tag/?tag_id={{ tag.id }}">{{ tag.name }}</a>
+            {% endfor %}
+        </div>
+    {% endif %}
+
+    <hr>
+
+    <form action="/post/commnet/" method="POST">
+        {% csrf_token %}
+        <input type="hidden" name="post_id" value="{{ post_id }}"><br>
+        <textarea name="content" rows="3"></textarea><br>
+        <input type="submit" name="发表评论">
+    </form>
+{% endblock %}
