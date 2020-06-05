@@ -23,11 +23,15 @@ from user import views as user_views
 
 urlpatterns = [
     # url(r'^admin/', admin.site.urls),
+    url(r'^$', post_views.post_list),
+    url(r'^index/', post_views.post_list),
+
     url(r'^post/create/', post_views.post_create),
     url(r'^post/read/', post_views.post_read),
     url(r'^post/list/', post_views.post_list),
     url(r'^post/edit/', post_views.post_edit),
-    url(r'^post/search', post_views.post_search),
+    url(r'^post/search/', post_views.post_search),
+    url(r'^post/top/', post_views.post_top),
 
     url(r'^user/register', user_views.user_register),
     url(r'^user/login', user_views.user_login),

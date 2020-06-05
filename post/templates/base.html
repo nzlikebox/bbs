@@ -55,6 +55,11 @@
                     {% csrf_token %}
                     <input type="text" class="form-control" placeholder="搜索" name="keyword">
                 </form>
+                <hr>
+                <h4>热门文章</h4>
+                <iframe src="/post/top/" frameborder="0" id="iFramel" name="iFramel" onload="this.height=iFramel.document.body.scrollHeight">
+                    <p>your browser does not support iframes</p>
+                </iframe>
             </div>
         </div>
     </div>

@@ -49,6 +49,7 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'common.middleware.BlackListMiddleware',
 ]
 
 ROOT_URLCONF = 'bbs.urls'
@@ -135,3 +136,25 @@ STATICFILES_DIRS = [
 
 MEDIA_ROOT = 'medias'
 MEDIA_URL = '/medias/'
+
+
+# 使用reids做缓存
+CACHES = {
+    "default": {
+        "BACKEND": "django_redis.cache.RedisCache",
+        "LOCATION": "redis://127.0.0.1:6379/2",
+        "OPTIONS": {
+            "CLIENT_CLASS": "django_redis.client.DefaultClient",
+            "PICKLE_VERSION": -1,
+            "PASSWORD": 'root',
+        }
+    }
+}
+
+# redis数据库连接配置
+REDIS = {
+    'host': 'localhost',
+    'port': 6379,
+    'db': 2,
+    'password': 'root',
+}
