@@ -32,6 +32,8 @@ urlpatterns = [
     url(r'^post/edit/', post_views.post_edit),
     url(r'^post/search/', post_views.post_search),
     url(r'^post/top/', post_views.post_top),
+    url(r'^post/comment/', post_views.post_comment),
+    url(r'^post/tag_filter/', post_views.post_tag_filter),
 
     url(r'^user/register', user_views.user_register),
     url(r'^user/login', user_views.user_login),

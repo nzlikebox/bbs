@@ -49,7 +49,7 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
-    'common.middleware.BlackListMiddleware',
+    # 'common.middleware.BlackListMiddleware',
 ]
 
 ROOT_URLCONF = 'bbs.urls'

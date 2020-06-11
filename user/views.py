@@ -4,6 +4,7 @@ from django.http import HttpResponse
 
 from user.models import User
 from user.forms import RegisterForm
+from user.helper import login_required
 # Create your views here.
 
 
@@ -17,6 +18,7 @@ def user_register(request):
 
             request.session['uid'] = user.id
             request.session['nickname'] = user.nickname
+            request.session['avatar'] = user.avatar
             # return redirect('/user/info/')
             return HttpResponse('注册成功')
         else:
@@ -35,6 +37,7 @@ def user_login(request):
         if check_password(password, user.password):
             request.session['uid'] = user.id
             request.session['nickname'] = user.nickname
+            request.session['avatar'] = user.avatar
             return redirect('/user/info/')
         else:
             return render(request, 'user_login.html', {'error': '密码错误，请重新输入'})
@@ -46,6 +49,7 @@ def user_logout(request):
     return redirect('/user/login/')
 
 
+@login_required
 def user_info(request):
     uid = request.session.get('uid')
     user = User.objects.get(id=uid)
